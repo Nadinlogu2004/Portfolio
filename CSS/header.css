@@ -1,0 +1,152 @@
+/* Header Styles */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  padding: var(--space-6) 0;
+  transition: all var(--transition-normal);
+  z-index: 100;
+}
+
+#header.scrolled {
+  background-color: var(--color-bg);
+  padding: var(--space-4) 0;
+  box-shadow: var(--shadow);
+}
+
+#header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  transition: color var(--transition-normal);
+}
+
+.logo i {
+  font-size: var(--font-size-2xl);
+}
+
+#header.scrolled .logo {
+  color: var(--color-primary);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.nav-link {
+  color: var(--color-primary);
+  font-weight: 500;
+  position: relative;
+  transition: color var(--transition-normal);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-accent);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.cta-button {
+  background-color: var(--color-accent);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: background-color var(--transition-normal), transform var(--transition-normal);
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* Mobile Navigation */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--color-bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    transition: right var(--transition-normal);
+    box-shadow: var(--shadow-xl);
+    z-index: 101;
+  }
+  
+  .nav-links.active {
+    right: 0;
+  }
+  
+  .menu-toggle {
+    display: block;
+    z-index: 102;
+  }
+  
+  .menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal);
+    z-index: 99;
+  }
+  
+  .menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .cta-button {
+    display: none;
+  }
+}
